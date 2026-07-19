@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта обучения · системный анализ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #f2f5f9;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+        .card {
+            max-width: 1080px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+        .banner {
+            position: relative;
+            width: 100%;
+            min-height: 200px;
+            background: linear-gradient(145deg, #0b1a2e 0%, #1a2f44 100%);
+        }
+        .banner-image {
+            width: 100%;
+            display: block;
+            opacity: 0.85;
+        }
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 48px;
+            background: linear-gradient(90deg, rgba(11,26,46,0.85) 0%, rgba(11,26,46,0.4) 60%, rgba(11,26,46,0.1) 100%);
+        }
+        .banner-overlay h1 {
+            font-size: 38px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+        .banner-overlay h1 span {
+            color: #7aa9f0;
+        }
+        .banner-overlay .sub {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            margin-top: 6px;
+        }
+        .module-list {
+            padding: 20px 24px;
+            background: #ffffff;
+        }
+        .module-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            border-bottom: 1px solid #f0f3f7;
+            gap: 12px;
+        }
+        .module-item:hover { background: #f8faff; }
+        .module-icon {
+            width: 36px;
+            height: 36px;
+            background: #eef3fc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 13px;
+            color: #1f3a57;
+            flex-shrink: 0;
+        }
+        .module-info {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 6px 16px;
+        }
+        .module-name {
+            font-weight: 600;
+            font-size: 15px;
+            color: #0c1e30;
+        }
+        .module-commit {
+            font-size: 13px;
+            color: #2e4b6b;
+            background: #f0f5fe;
+            padding: 2px 12px;
+            border-radius: 30px;
+            border: 1px solid #e3ecfa;
+        }
+        .module-time {
+            font-size: 13px;
+            color: #6a7f98;
+            margin-left: auto;
+            white-space: nowrap;
+            background: #f5f8fc;
+            padding: 2px 12px;
+            border-radius: 30px;
+        }
+        .module-time.now {
+            background: #d4e2fa;
+            color: #10437c;
+            font-weight: 600;
+        }
+        .readme-row {
+            background: #f3f8ff;
+            border-radius: 14px;
+            margin-top: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #deeaf9;
+        }
+        .readme-row .module-icon { background: #d4e2fa; color: #0f3b6b; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="banner">
+            <img src="banner.jpg" alt="Карта обучения" class="banner-image" onerror="this.style.display='none'">
+            <div class="banner-overlay">
+                <h1>Карта обучения: <span>системный анализ</span></h1>
+                <div class="sub">📘 11 модулей · последнее обновление сегодня · #системный_аналитик</div>
+            </div>
+        </div>
+        <div class="module-list">
+            <div class="module-item"><div class="module-icon">1</div><div class="module-info"><span class="module-name">01-vvedenie-v-sistemny...</span><span class="module-commit">feat: модуль 1 — введен...</span></div><span class="module-time">23 min ago</span></div>
+            <div class="module-item"><div class="module-icon">2</div><div class="module-info"><span class="module-name">02-sbor-trebovaniy</span><span class="module-commit">feat: модуль 2 — сбор тр...</span></div><span class="module-time">23 min ago</span></div>
+            <div class="module-item"><div class="module-icon">3</div><div class="module-info"><span class="module-name">03-keysy</span><span class="module-commit">feat: кейс «Прокачу» — п...</span></div><span class="module-time">22 min ago</span></div>
+            <div class="module-item"><div class="module-icon">4</div><div class="module-info"><span class="module-name">04-kachestvo-trebovaniy</span><span class="module-commit">feat: модуль 4 — качеств...</span></div><span class="module-time">22 min ago</span></div>
+            <div class="module-item"><div class="module-icon">5</div><div class="module-info"><span class="module-name">05-scenarii-ispolzovaniya</span><span class="module-commit">feat: модуль 5 — сценар...</span></div><span class="module-time">20 min ago</span></div>
+            <div class="module-item"><div class="module-icon">6</div><div class="module-info"><span class="module-name">06-instrumenty-analitika</span><span class="module-commit">feat: модуль 6 — инстру...</span></div><span class="module-time">15 min ago</span></div>
+            <div class="module-item"><div class="module-icon">7</div><div class="module-info"><span class="module-name">07-modelirovanie</span><span class="module-commit">feat: модуль 7 — модели...</span></div><span class="module-time">11 min ago</span></div>
+            <div class="module-item"><div class="module-icon">8</div><div class="module-info"><span class="module-name">08-rabota-s-API</span><span class="module-commit">feat: модуль 8 — работа ...</span></div><span class="module-time">9 min ago</span></div>
+            <div class="module-item"><div class="module-icon">9</div><div class="module-info"><span class="module-name">09-rabota-s-BD</span><span class="module-commit">feat: модуль 9 — работа ...</span></div><span class="module-time">2 min ago</span></div>
+            <div class="module-item"><div class="module-icon">10</div><div class="module-info"><span class="module-name">10-sistematizaciya-dan...</span><span class="module-commit">feat: модуль 10 — систе...</span></div><span class="module-time">1 min ago</span></div>
+            <div class="module-item"><div class="module-icon">11</div><div class="module-info"><span class="module-name">11-oformlenie-trebovaniy</span><span class="module-commit">feat: модуль 11 — оформ...</span></div><span class="module-time now">now</span></div>
+            <div class="readme-row"><div class="module-icon">📄</div><div class="module-info"><span class="module-name">README.md</span><span class="module-commit">init: карта обучения по си...</span></div><span class="module-time">42 min ago</span></div>
+        </div>
+    </div>
+</body>
+</html>
