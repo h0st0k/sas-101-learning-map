@@ -1,5 +1,3 @@
-
-=======
 <p align="center">
   <img src="banner.jpg" alt="Портфолио как карта сокровищ" width="100%">
 </p>
