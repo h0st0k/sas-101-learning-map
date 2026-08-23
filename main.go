@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -9,15 +10,11 @@ import (
 	"time"
 )
 
-const (
-	botToken = "8929572598:AAFWesmsyzTZrFGYLtB1PmK0ou8NU46yh9E"
-	chatID   = "8267281287" 
-)
+var BotToken = os.Getenv("TELEGRAM_BOT_TOKEN")
+const chatID = "8267281287"
 
 func sendTelegram(message string) {
-	// Полная строка URL без динамической сборки, чтобы избежать любых ошибок парсинга
-	apiURL := "https://telegram.org"
-	
+		apiURL := "https://api.telegram.org/bot" + BotToken + "/sendMessage"
 	resp, err := http.PostForm(apiURL, url.Values{
 		"chat_id": {chatID},
 		"text":    {message},
