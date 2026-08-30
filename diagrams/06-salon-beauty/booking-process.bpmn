@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL">
+  <bpmn:process id="BookingProcess" isExecutable="false">
+    <bpmn:startEvent id="StartEvent" name="Клиент открыл приложение"/>
+    <bpmn:userTask id="Task1" name="Выбор услуги и мастера"/>
+    <bpmn:serviceTask id="Task2" name="Проверка свободных слотов"/>
+    <bpmn:exclusiveGateway id="Gateway1" name="Слот свободен?"/>
+    <bpmn:userTask id="Task3" name="Ввод имени и телефона"/>
+    <bpmn:serviceTask id="Task4" name="Создание записи"/>
+    <bpmn:serviceTask id="Task5" name="Отправка подтверждения"/>
+    <bpmn:serviceTask id="Task6" name="Напоминание за 24 часа"/>
+    <bpmn:endEvent id="EndEvent" name="Запись создана"/>
+    
+    <bpmn:sequenceFlow sourceRef="StartEvent" targetRef="Task1"/>
+    <bpmn:sequenceFlow sourceRef="Task1" targetRef="Task2"/>
+    <bpmn:sequenceFlow sourceRef="Task2" targetRef="Gateway1"/>
+    <bpmn:sequenceFlow sourceRef="Gateway1" targetRef="Task3" name="Да"/>
+    <bpmn:sequenceFlow sourceRef="Gateway1" targetRef="EndEvent" name="Нет"/>
+    <bpmn:sequenceFlow sourceRef="Task3" targetRef="Task4"/>
+    <bpmn:sequenceFlow sourceRef="Task4" targetRef="Task5"/>
+    <bpmn:sequenceFlow sourceRef="Task5" targetRef="Task6"/>
+    <bpmn:sequenceFlow sourceRef="Task6" targetRef="EndEvent"/>
+  </bpmn:process>
+</bpmn:definitions>
