@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL">
+  <bpmn:process id="OrderProcess" isExecutable="false">
+    <bpmn:startEvent id="StartEvent" name="Клиент нажал Оформить заказ"/>
+    <bpmn:userTask id="Task1" name="Заполнение формы"/>
+    <bpmn:exclusiveGateway id="Gateway1" name="Способ оплаты?"/>
+    <bpmn:userTask id="Task2" name="Оплата картой онлайн"/>
+    <bpmn:userTask id="Task3" name="Оплата наличными при получении"/>
+    <bpmn:serviceTask id="Task4" name="Проверка оплаты"/>
+    <bpmn:exclusiveGateway id="Gateway2" name="Оплата успешна?"/>
+    <bpmn:serviceTask id="Task5" name="Создание заказа (статус: Принят)"/>
+    <bpmn:serviceTask id="Task6" name="Отправка уведомления"/>
+    <bpmn:endEvent id="EndEvent" name="Заказ создан"/>
+    
+    <bpmn:sequenceFlow sourceRef="StartEvent" targetRef="Task1"/>
+    <bpmn:sequenceFlow sourceRef="Task1" targetRef="Gateway1"/>
+    <bpmn:sequenceFlow sourceRef="Gateway1" targetRef="Task2" name="Карта"/>
+    <bpmn:sequenceFlow sourceRef="Gateway1" targetRef="Task3" name="Наличные"/>
+    <bpmn:sequenceFlow sourceRef="Task2" targetRef="Task4"/>
+    <bpmn:sequenceFlow sourceRef="Task3" targetRef="Task4"/>
+    <bpmn:sequenceFlow sourceRef="Task4" targetRef="Gateway2"/>
+    <bpmn:sequenceFlow sourceRef="Gateway2" targetRef="Task5" name="Да"/>
+    <bpmn:sequenceFlow sourceRef="Task5" targetRef="Task6"/>
+    <bpmn:sequenceFlow sourceRef="Task6" targetRef="EndEvent"/>
+  </bpmn:process>
+</bpmn:definitions>
