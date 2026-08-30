@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL">
+  <bpmn:process id="RentalProcess" isExecutable="false">
+    <bpmn:startEvent id="StartEvent" name="Клиент открыл приложение"/>
+    <bpmn:userTask id="Task1" name="Просмотр карты станций"/>
+    <bpmn:userTask id="Task2" name="Выбор велосипеда"/>
+    <bpmn:userTask id="Task3" name="Бронирование на 15 минут"/>
+    <bpmn:serviceTask id="Task4" name="Проверка доступности"/>
+    <bpmn:exclusiveGateway id="Gateway1" name="Велосипед свободен?"/>
+    <bpmn:serviceTask id="Task5" name="Старт аренды"/>
+    <bpmn:serviceTask id="Task6" name="Списание депозита"/>
+    <bpmn:serviceTask id="Task7" name="Разблокировка замка"/>
+    <bpmn:endEvent id="EndEvent" name="Аренда активна"/>
+    
+    <bpmn:sequenceFlow sourceRef="StartEvent" targetRef="Task1"/>
+    <bpmn:sequenceFlow sourceRef="Task1" targetRef="Task2"/>
+    <bpmn:sequenceFlow sourceRef="Task2" targetRef="Task3"/>
+    <bpmn:sequenceFlow sourceRef="Task3" targetRef="Task4"/>
+    <bpmn:sequenceFlow sourceRef="Task4" targetRef="Gateway1"/>
+    <bpmn:sequenceFlow sourceRef="Gateway1" targetRef="Task5" name="Да"/>
+    <bpmn:sequenceFlow sourceRef="Gateway1" targetRef="EndEvent" name="Нет"/>
+    <bpmn:sequenceFlow sourceRef="Task5" targetRef="Task6"/>
+    <bpmn:sequenceFlow sourceRef="Task6" targetRef="Task7"/>
+    <bpmn:sequenceFlow sourceRef="Task7" targetRef="EndEvent"/>
+  </bpmn:process>
+</bpmn:definitions>
