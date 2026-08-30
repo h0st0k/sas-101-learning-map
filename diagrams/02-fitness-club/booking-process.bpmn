@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL">
+  <bpmn:process id="BookingProcess" isExecutable="false">
+    <bpmn:startEvent id="StartEvent" name="Клиент открыл приложение"/>
+    <bpmn:userTask id="Task1" name="Просмотр расписания"/>
+    <bpmn:userTask id="Task2" name="Выбор занятия"/>
+    <bpmn:serviceTask id="Task3" name="Проверка свободных мест"/>
+    <bpmn:exclusiveGateway id="Gateway1" name="Места есть?"/>
+    <bpmn:serviceTask id="Task4" name="Создание записи"/>
+    <bpmn:serviceTask id="Task5" name="Отправка уведомления"/>
+    <bpmn:endEvent id="EndEvent" name="Конец"/>
+    
+    <bpmn:sequenceFlow sourceRef="StartEvent" targetRef="Task1"/>
+    <bpmn:sequenceFlow sourceRef="Task1" targetRef="Task2"/>
+    <bpmn:sequenceFlow sourceRef="Task2" targetRef="Task3"/>
+    <bpmn:sequenceFlow sourceRef="Task3" targetRef="Gateway1"/>
+    <bpmn:sequenceFlow sourceRef="Gateway1" targetRef="Task4" name="Да"/>
+    <bpmn:sequenceFlow sourceRef="Gateway1" targetRef="EndEvent" name="Нет"/>
+    <bpmn:sequenceFlow sourceRef="Task4" targetRef="Task5"/>
+    <bpmn:sequenceFlow sourceRef="Task5" targetRef="EndEvent"/>
+  </bpmn:process>
+</bpmn:definitions>

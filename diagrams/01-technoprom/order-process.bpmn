@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+                   xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+                   xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" 
+                   xmlns:di="http://www.omg.org/spec/DD/20100524/DI" 
+                   id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  
+  <bpmn:process id="Process_1" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_1" name="Заявка от клиента"/>
+    
+    <bpmn:userTask id="Task_1" name="Обработка заявки менеджером"/>
+    
+    <bpmn:serviceTask id="Task_2" name="Проверка наличия материалов"/>
+    
+    <bpmn:exclusiveGateway id="Gateway_1" name="Материалы есть?"/>
+    
+    <bpmn:userTask id="Task_3" name="Заказ поставщику"/>
+    
+    <bpmn:userTask id="Task_4" name="Создание заказа"/>
+    
+    <bpmn:serviceTask id="Task_5" name="Оплата"/>
+    
+    <bpmn:userTask id="Task_6" name="Передача в производство"/>
+    
+    <bpmn:endEvent id="EndEvent_1" name="Заказ выполнен"/>
+    
+    <!-- Связи -->
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_1" targetRef="Task_1"/>
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_1" targetRef="Task_2"/>
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_2" targetRef="Gateway_1"/>
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Gateway_1" targetRef="Task_4" name="Да"/>
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="Gateway_1" targetRef="Task_3" name="Нет"/>
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="Task_3" targetRef="Task_4"/>
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="Task_4" targetRef="Task_5"/>
+    <bpmn:sequenceFlow id="Flow_8" sourceRef="Task_5" targetRef="Task_6"/>
+    <bpmn:sequenceFlow id="Flow_9" sourceRef="Task_6" targetRef="EndEvent_1"/>
+  </bpmn:process>
+</bpmn:definitions>
