@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL">
+  <bpmn:process id="OrderProcess" isExecutable="false">
+    <bpmn:startEvent id="StartEvent" name="Клиент оформляет заказ"/>
+    <bpmn:userTask id="Task1" name="Просмотр меню"/>
+    <bpmn:userTask id="Task2" name="Добавление в корзину"/>
+    <bpmn:userTask id="Task3" name="Оформление заказа"/>
+    <bpmn:serviceTask id="Task4" name="Проверка данных"/>
+    <bpmn:serviceTask id="Task5" name="Оплата"/>
+    <bpmn:serviceTask id="Task6" name="Создание заказа"/>
+    <bpmn:userTask id="Task7" name="Передача курьеру"/>
+    <bpmn:serviceTask id="Task8" name="Отслеживание курьера"/>
+    <bpmn:endEvent id="EndEvent" name="Заказ доставлен"/>
+    
+    <bpmn:sequenceFlow sourceRef="StartEvent" targetRef="Task1"/>
+    <bpmn:sequenceFlow sourceRef="Task1" targetRef="Task2"/>
+    <bpmn:sequenceFlow sourceRef="Task2" targetRef="Task3"/>
+    <bpmn:sequenceFlow sourceRef="Task3" targetRef="Task4"/>
+    <bpmn:sequenceFlow sourceRef="Task4" targetRef="Task5"/>
+    <bpmn:sequenceFlow sourceRef="Task5" targetRef="Task6"/>
+    <bpmn:sequenceFlow sourceRef="Task6" targetRef="Task7"/>
+    <bpmn:sequenceFlow sourceRef="Task7" targetRef="Task8"/>
+    <bpmn:sequenceFlow sourceRef="Task8" targetRef="EndEvent"/>
+  </bpmn:process>
+</bpmn:definitions>
